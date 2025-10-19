@@ -1,15 +1,12 @@
-# ===============================
 # Ignore les librairies locales
-# ===============================
 *.jar
 *.war
 *.ear
-/WebContent/WEB-INF/lib/
+/webapp/WEB-INF/lib/
+webapp/WEB-INF/config/db.properties
 /lib/
 
-# ===============================
 # Fichiers générés par Eclipse
-# ===============================
 .classpath
 .project
 .settings/
@@ -18,17 +15,13 @@ build/
 target/
 out/
 
-# ===============================
 # Fichiers système
-# ===============================
 .DS_Store
 Thumbs.db
 *.log
 *.tmp
 *.bak
 
-# ===============================
 # Fichiers IDE
-# ===============================
 .idea/
 nbproject/
