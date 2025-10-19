@@ -55,7 +55,7 @@ Pour exécuter ce projet correctement, vous devez utiliser :
 - **MySQL Server**  
 - Les librairies externes dans `webapp/WEB-INF/lib/` (voir section Dépendances)
 
-### Déployer et exécuter le projet
+## Déployer et exécuter le projet
 
 1. Clic droit sur le projet → `Run As → Run on Server`
 2. Sélectionner le serveur Tomcat 10.1
@@ -63,7 +63,7 @@ Pour exécuter ce projet correctement, vous devez utiliser :
 4. Accéder à l’application dans le navigateur : http://localhost:8080/plateforme-signalement
 
 
-### Notes importantes
+## Notes importantes
 
 - Tomcat 10 utilise **Jakarta Servlet 5.0+**.
 - Les imports doivent être `jakarta.servlet.*` et non `javax.servlet.*`.
