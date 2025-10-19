@@ -39,6 +39,8 @@ db.password=<mot_de_passe>
 
 Les bibliothèques suivantes doivent être présentes dans `webapp/WEB-INF/lib/` :
 
+- **flyway-core-9.8.3.jar**
+- **flyway-mysql-9.8.3.jar**
 - **mysql-connector-j-8.0.13.jar**  
 - **jakarta.servlet.jsp.jstl-2.0.0.jar**
 - **jakarta.servlet.jsp.jstl-api-2.0.0.jar**
