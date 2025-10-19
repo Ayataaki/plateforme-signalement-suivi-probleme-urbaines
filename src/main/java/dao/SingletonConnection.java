@@ -1,10 +1,11 @@
 package dao;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+import org.flywaydb.core.Flyway;
 
 public class SingletonConnection {
 	
@@ -14,14 +15,23 @@ public class SingletonConnection {
 	//On met la connection dans un bloc static. 
 	//En effet, ceci garantit d'avoir une seule connection, lors de chargement de la classe
     static {
-    try {
+    try {   	
+
+        // Charge le driver JDBC MySQL pour établir la connexion
+    	// Ce driver doit etre charger avant le travail avec flyway
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
         // Crée un objet Properties pour lire les paramètres de configuration
         Properties props = new Properties();
 
         // Charge le fichier db.properties depuis le classpath (webapp/WEB-INF/config)
-        InputStream in = SingletonConnection.class.getClassLoader()
-                            .getResourceAsStream("config/db.properties");
+        InputStream in = SingletonConnection.class.getClassLoader().
+        //cette approche utilise web-inf qui n'est pas accessible facilement, il faut une servlet
+        //                    getResourceAsStream("webapp/WEB-INF/config/db.properties");
+                            getResourceAsStream("db.properties");
         
+        //InputStream in = new FileInputStream("C:/Users/Admin/Desktop/J2EE-Workspace/plateforme-signalement/src/main/webapp/WEB-INF/config/db.properties");
+
         // Remplit l'objet Properties avec les valeurs du fichier
         props.load(in);
 
@@ -29,9 +39,10 @@ public class SingletonConnection {
         String url = props.getProperty("db.url");       
         String user = props.getProperty("db.user");     
         String password = props.getProperty("db.password"); 
+        
+        // Migré la BDD
+        migrateDatabase(url,user,password);
 
-        // Charge le driver JDBC MySQL pour établir la connexion
-        Class.forName("com.mysql.cj.jdbc.Driver");
 
         // Crée la connexion à la base de données avec les paramètres récupérés
         connection = DriverManager.getConnection(url, user, password);
@@ -42,12 +53,18 @@ public class SingletonConnection {
     }
 }
 
-
-    public static Connection getConnection() {
-        if (connection == null) {
-            System.err.println("Connection est null");
-            throw new RuntimeException("La connexion à la base de données a échoué !");
-        }
-        return connection;
+    private static void migrateDatabase(String URL,String USER,String PASSWORD) {
+        System.out.println("Migration Flyway en cours");
+        Flyway flyway = Flyway.configure()
+            .dataSource(URL, USER, PASSWORD)
+            .locations("classpath:db/migration")
+            .load();
+        flyway.migrate();
+        System.out.println("Migration Flyway terminée !");
     }
+
+	public static Connection getConnection() {
+		return connection;
+	}
+    
 }
