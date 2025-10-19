@@ -1,0 +1,34 @@
+# ===============================
+# Ignore les librairies locales
+# ===============================
+*.jar
+*.war
+*.ear
+/WebContent/WEB-INF/lib/
+/lib/
+
+# ===============================
+# Fichiers générés par Eclipse
+# ===============================
+.classpath
+.project
+.settings/
+bin/
+build/
+target/
+out/
+
+# ===============================
+# Fichiers système
+# ===============================
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+
+# ===============================
+# Fichiers IDE
+# ===============================
+.idea/
+nbproject/
