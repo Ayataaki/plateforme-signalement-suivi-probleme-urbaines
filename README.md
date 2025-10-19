@@ -24,6 +24,17 @@ Comment l’inclure dans vos pages JSP ?
 <script src="js/bootstrap.bundle.min.js"></script>
 ```
 
+## Base de données : 
+
+Afin de garantir la sécurité des données, le chemin vers la base de données, le nom de l'utilisateur et le mot de passe ont été stockés dans un fichier nommé `db.properties` et ce dernier a été déposer dans le dossier suivant : `webapp/WEB-INF/config/db.properties`
+
+La structure de ce fichier : 
+```
+db.url=jdbc:mysql://localhost:<port>/<nom_db>?serverTimezone=UTC
+db.user=<nom_utilisateur>
+db.password=<mot_de_passe>
+```
+
 ##  Librairies externes
 
 Les bibliothèques suivantes doivent être présentes dans `webapp/WEB-INF/lib/` :
