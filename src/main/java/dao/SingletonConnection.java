@@ -59,6 +59,12 @@ public class SingletonConnection {
             .dataSource(URL, USER, PASSWORD)
             .locations("classpath:db/migration")
             .load();
+     
+        // Repair failed migrations
+        // Si une migration est faite avec erreur et après modif dans les fichiers 
+        // principaux Vy__yy, tu dois exécuter cette ligne
+        //flyway.repair();
+
         flyway.migrate();
         System.out.println("Migration Flyway terminée !");
     }
