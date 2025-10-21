@@ -1,4 +1,4 @@
--- V7__add_foreign_key_employe_municipal.sql
+ 
 
 -- 1. Ajouter la colonne de clé étrangère
 ALTER TABLE employe ADD COLUMN ID_MUNICIPAL BIGINT;
