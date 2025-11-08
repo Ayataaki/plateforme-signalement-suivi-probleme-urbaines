@@ -24,10 +24,23 @@ Comment l’inclure dans vos pages JSP ?
 <script src="js/bootstrap.bundle.min.js"></script>
 ```
 
+## Base de données : 
+
+Afin de garantir la sécurité des données, le chemin vers la base de données, le nom de l'utilisateur et le mot de passe ont été stockés dans un fichier nommé `db.properties` et ce dernier a été déposer dans le dossier suivant : `webapp/WEB-INF/config/db.properties`
+
+La structure de ce fichier : 
+```
+db.url=jdbc:mysql://localhost:<port>/<nom_db>?serverTimezone=UTC
+db.user=<nom_utilisateur>
+db.password=<mot_de_passe>
+```
+
 ##  Librairies externes
 
 Les bibliothèques suivantes doivent être présentes dans `webapp/WEB-INF/lib/` :
 
+- **flyway-core-9.8.3.jar**
+- **flyway-mysql-9.8.3.jar**
 - **mysql-connector-j-8.0.13.jar**  
 - **jakarta.servlet.jsp.jstl-2.0.0.jar**
 - **jakarta.servlet.jsp.jstl-api-2.0.0.jar**
@@ -44,7 +57,7 @@ Pour exécuter ce projet correctement, vous devez utiliser :
 - **MySQL Server**  
 - Les librairies externes dans `webapp/WEB-INF/lib/` (voir section Dépendances)
 
-### Déployer et exécuter le projet
+## Déployer et exécuter le projet
 
 1. Clic droit sur le projet → `Run As → Run on Server`
 2. Sélectionner le serveur Tomcat 10.1
@@ -52,7 +65,7 @@ Pour exécuter ce projet correctement, vous devez utiliser :
 4. Accéder à l’application dans le navigateur : http://localhost:8080/plateforme-signalement
 
 
-### Notes importantes
+## Notes importantes
 
 - Tomcat 10 utilise **Jakarta Servlet 5.0+**.
 - Les imports doivent être `jakarta.servlet.*` et non `javax.servlet.*`.
